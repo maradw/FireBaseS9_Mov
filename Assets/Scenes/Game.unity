@@ -238,12 +238,12 @@ GameObject:
   - component: {fileID: 468968949}
   - component: {fileID: 468968948}
   m_Layer: 0
-  m_Name: Spawner parallax
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &468968948
 MonoBehaviour:
   m_ObjectHideFlags: 0
