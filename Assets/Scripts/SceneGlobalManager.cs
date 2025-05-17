@@ -7,9 +7,7 @@ public class SceneGlobalManager : MonoBehaviour
 {
     public static SceneGlobalManager Instance;
 
-    [Header("Carga de Escena")]
     //[SerializeField] private Image loadingBarFill;
-    private string initialScene = "Menu";
 
     private void Awake()
     {
