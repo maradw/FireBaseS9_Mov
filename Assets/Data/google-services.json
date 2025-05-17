@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "876423175417",
+    "firebase_url": "https://moviless9-default-rtdb.firebaseio.com",
+    "project_id": "moviless9",
+    "storage_bucket": "moviless9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876423175417:android:750d3bc1098517af5b9628",
+        "android_client_info": {
+          "package_name": "com.Huayas_Mendoza.MovilesS9"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-jh2R9XjjKCL-MUehy029jPWiZC5t0vQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
