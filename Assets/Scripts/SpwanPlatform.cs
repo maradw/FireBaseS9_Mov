@@ -2,28 +2,26 @@ using UnityEngine;
 
 public class SpwanPlatform : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject platformPrefab;
 
-    public int platformCount = 20;
+     int platformCount = 10;
 
-    // Start is called before the first frame update
     void Start()
     {
         Vector3 spawnPosition = new Vector3();
+        float minYSpacing = 2.5f; 
+        float maxYSpacing = 3.5f; 
+        float minX = 3.1f;        
+        float maxX = 14.1f;
 
         for (int i = 0; i < platformCount; i++)
         {
-            spawnPosition.y += Random.Range(.5f, 2f);
-            spawnPosition.x = Random.Range(-2.3f, 2.3f);
+            spawnPosition.y += Random.Range(minYSpacing, maxYSpacing);
+            spawnPosition.x = Random.Range(minX, maxX);
             Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
         }
 
-        
+
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
