@@ -8,8 +8,8 @@ public class SceneGlobalManager : MonoBehaviour
     public static SceneGlobalManager Instance;
 
     [Header("Carga de Escena")]
-    [SerializeField] private Image loadingBarFill;
-    private string initialScene = "";
+    //[SerializeField] private Image loadingBarFill;
+    private string initialScene = "Menu";
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class SceneGlobalManager : MonoBehaviour
 
     public void AssignLoadingBar(Image bar)
     {
-        loadingBarFill = bar;
+       //loadingBarFill = bar;
     }
     public void LoadScene(string sceneName)
     {

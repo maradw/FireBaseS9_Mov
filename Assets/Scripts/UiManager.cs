@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
 
+
 public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
-
+    [SerializeField] private GameObject namePanel;
+    [SerializeField] private GameObject scoresPanel;
     private void OnEnable()
     {
         GameManager.OnGameStart += ShowGame;
@@ -20,7 +22,7 @@ public class UIManager : MonoBehaviour
         GameManager.OnScoreChanged -= UpdateScore;
     }
 
-    void ShowGame()
+    void ShowGame( )
     {
         Debug.Log(" Game Started");
     }
@@ -34,5 +36,13 @@ public class UIManager : MonoBehaviour
     {
         scoreText.text = "Score: " + newScore;
        
+    }
+    public void ShowPanels(GameObject panelToSet)
+    {
+        panelToSet.SetActive(true);
+    }
+    public void HidePanels(GameObject panelToSet)
+    {
+        panelToSet.SetActive(false);
     }
 }
