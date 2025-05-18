@@ -13,7 +13,7 @@ public class DatabaseHandler : MonoBehaviour
     [SerializeField] private TMP_InputField inputField;
     private User getUser;
     private string playerKey = "";
-    [SerializeField] GameData gameData;
+    //[SerializeField] GameData gameData;
     private void Awake()
     {
         userID = SystemInfo.deviceUniqueIdentifier;
@@ -22,6 +22,7 @@ public class DatabaseHandler : MonoBehaviour
     void Start()
     {
         reference = FirebaseDatabase.DefaultInstance.RootReference;
+
     }
 
     public void LoadInfo()
@@ -35,7 +36,8 @@ public class DatabaseHandler : MonoBehaviour
     
     private void CreateUser()
     {
-        User newUser = new User(inputField.text, 0);
+        string playerName = inputField.text;
+        User newUser = new User(playerName, 0);
         string json = JsonUtility.ToJson(newUser);
 
 
@@ -49,12 +51,12 @@ public class DatabaseHandler : MonoBehaviour
     public void SaveName()
     {
         string playerName = inputField.text;
-        gameData.name = playerName;
+       // gameData.name = playerName;
     }
-    public void CreateNewPlayer(string playerName)
+    public void CreateNewPlayer()
     {
-        
 
+        string playerName = inputField.text;
         User newPlayer = new User(playerName, 0);
         string json = JsonUtility.ToJson(newPlayer);
 

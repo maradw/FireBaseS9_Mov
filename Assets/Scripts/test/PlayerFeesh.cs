@@ -5,7 +5,6 @@ public class PlayerFeesh : MonoBehaviour
 {
     public float fallLimitY = -10f;
 
-    [SerializeField] private FirebaseManager firebaseManager;
     public static event Action<int> OnScoreUpdated;
     public float score = 0;
     public static event Action OnGameOver;
@@ -18,8 +17,7 @@ public class PlayerFeesh : MonoBehaviour
         /* gameManager = GetComponent<GameManager>();
          firebaseManager = GetComponent<FirebaseManager>();*/
 
-        if (firebaseManager == null)
-            Debug.LogError("firebaseManager no está asignado en el Inspector.");
+       
     }
 
     void Update()

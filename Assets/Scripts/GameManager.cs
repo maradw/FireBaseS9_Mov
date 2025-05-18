@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static event Action OnGameStart;
-    [SerializeField] private DatabaseHandler databaseHandler;
+     private DatabaseHandler databaseHandler;
     [SerializeField] private PlayerFeesh playerFeesh;
     public static event Action OnGamePaused;
     public static event Action OnGameResumed;
@@ -18,9 +18,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartGame();
+        databaseHandler = GetComponent<DatabaseHandler>();
         print("name" + databaseHandler.GetName());
-        databaseHandler.CreateNewPlayer(gameData.name);
+        databaseHandler.CreateNewPlayer();
+        StartGame();
     }
     private void OnEnable()
     {
