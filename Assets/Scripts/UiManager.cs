@@ -5,21 +5,20 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI healthText;
+    //public TextMeshProUGUI healthText;
     [SerializeField] private GameObject namePanel;
     [SerializeField] private GameObject scoresPanel;
     private void OnEnable()
     {
         GameManager.OnGameStart += ShowGame;
-        GameManager.OnGameOver += ShowGameOver;
-        GameManager.OnScoreChanged += UpdateScore;
+
+        PlayerFeesh.OnScoreUpdated += UpdateScore;
     }
 
     private void OnDisable()
     {
         GameManager.OnGameStart -= ShowGame;
-        GameManager.OnGameOver -= ShowGameOver;
-        GameManager.OnScoreChanged -= UpdateScore;
+        PlayerFeesh.OnScoreUpdated -= UpdateScore;
     }
 
     void ShowGame( )
@@ -34,7 +33,7 @@ public class UIManager : MonoBehaviour
 
     void UpdateScore(int newScore)
     {
-        scoreText.text = "Score: " + newScore;
+        scoreText.text = "Height " + newScore;
        
     }
     public void ShowPanels(GameObject panelToSet)

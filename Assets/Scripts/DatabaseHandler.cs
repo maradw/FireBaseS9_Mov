@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Diagnostics;
 using Firebase.Database;
 using TMPro;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class DatabaseHandler : MonoBehaviour
     private DatabaseReference reference;
     [SerializeField] private TMP_InputField inputField;
     private User getUser;
+    private string playerKey = "";
+    [SerializeField] GameData gameData;
     private void Awake()
     {
         userID = SystemInfo.deviceUniqueIdentifier;
@@ -19,9 +22,6 @@ public class DatabaseHandler : MonoBehaviour
     void Start()
     {
         reference = FirebaseDatabase.DefaultInstance.RootReference;
-
-
-        //Invoke(nameof(GetUserInfo), 1f);
     }
 
     public void LoadInfo()
@@ -41,7 +41,46 @@ public class DatabaseHandler : MonoBehaviour
 
         reference.Child("users").Child(userID).SetRawJsonValueAsync(json);
     }
+    public string GetName()
+    {
+        string name = inputField.text;
+        return name;
+    }
+    public void SaveName()
+    {
+        string playerName = inputField.text;
+        gameData.name = playerName;
+    }
+    public void CreateNewPlayer(string playerName)
+    {
+        
 
+        User newPlayer = new User(playerName, 0);
+        string json = JsonUtility.ToJson(newPlayer);
+
+
+        DatabaseReference newPlayerRef = reference.Child("users").Child(userID).Child("players").Push();
+        playerKey = newPlayerRef.Key; 
+
+        newPlayerRef.SetRawJsonValueAsync(json);
+    }
+    public void SaveScore(int score)
+    {
+        if (string.IsNullOrEmpty(playerKey))
+        {
+            UnityEngine.Debug.LogWarning("No playerKey definida. Llama a CreateNewPlayer() primero.");
+            return;
+        }
+
+        reference.Child("users").Child(userID).Child("players").Child(playerKey).Child("scoreHeight").SetValueAsync(score);
+        reference.Child("users").Child(userID).Child("players").Child(playerKey).Child("scores").Push().SetValueAsync(score);
+    }
+    public void SaveScore2(int score)
+    {
+        print("score sended");
+        reference.Child("users").Child(userID).Child("scoreHeight").SetValueAsync(score);
+        print("success");
+    }
 
     private IEnumerator GetFirstName(Action<string> onCallBack)
     {
@@ -75,42 +114,22 @@ public class DatabaseHandler : MonoBehaviour
     }
 
 
-    /*private IEnumerator GetCodeID(Action<int> onCallBack)
-    {
-        var userNameData = reference.Child("users").Child(userID).Child(nameof(User.codeID)).GetValueAsync();
-
-
-        yield return new WaitUntil(predicate: () => userNameData.IsCompleted);
-
-
-        if (userNameData != null)
-        {
-            DataSnapshot snapshot = userNameData.Result;
-            //(int) -> Casting
-            //int.Parse -> Parsing
-            //https://teamtreehouse.com/community/when-should-i-use-int-and-intparse-whats-the-difference
-            onCallBack?.Invoke(int.Parse(snapshot.Value.ToString()));
-        }
-    }*/
-
-
     public void GetUserInfo()
     {
         StartCoroutine(GetFirstName(PrintData));
         StartCoroutine(GetLastName(PrintData));
-        //StartCoroutine(GetCodeID(PrintData));
     }
 
 
     private void PrintData(string name)
     {
-        Debug.Log(name);
+        print(name);
     }
 
 
     private void PrintData(int code)
     {
-        Debug.Log(code);
+       print(code);
     }
     public class User
     {

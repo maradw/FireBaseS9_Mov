@@ -227,6 +227,52 @@ Transform:
   - {fileID: 993876208}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &247180635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 247180637}
+  - component: {fileID: 247180636}
+  m_Layer: 0
+  m_Name: Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &247180636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247180635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 171761469cfadf74a8375699e45e2317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 0}
+  gameData: {fileID: 11400000, guid: 4eb7e274bd4e6b84fbf1f0f0f210fa96, type: 2}
+--- !u!4 &247180637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247180635}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 966.17883, y: 1105.6711, z: -19.001448}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &394459917
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,8 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04342caa88d412c45ae725a01d4025e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
-  healthText: {fileID: 0}
+  scoreText: {fileID: 1679349425}
   namePanel: {fileID: 0}
   scoresPanel: {fileID: 0}
 --- !u!4 &406703003
@@ -1041,6 +1086,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &784908407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 784908408}
+  m_Layer: 0
+  m_Name: FireBase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &784908408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784908407}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.63, y: 8.345005, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &993876206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1230,7 @@ GameObject:
   - component: {fileID: 1257498184}
   - component: {fileID: 1257498183}
   - component: {fileID: 1257498187}
+  - component: {fileID: 1257498188}
   m_Layer: 0
   m_Name: Feesh
   m_TagString: Untagged
@@ -1317,6 +1394,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedM: 4
+--- !u!114 &1257498188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257498182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e157b4bea4dbb9741b0b1c12304b1950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallLimitY: -10
+  firebaseManager: {fileID: 0}
+  score: 0
 --- !u!1 &1510917062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1423,7 +1515,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19eb94bb3e8d684983deed239e34ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
+  databaseHandler: {fileID: 247180636}
+  playerFeesh: {fileID: 1257498188}
+  gameData: {fileID: 11400000, guid: 4eb7e274bd4e6b84fbf1f0f0f210fa96, type: 2}
 --- !u!4 &1670223709
 Transform:
   m_ObjectHideFlags: 0
@@ -2351,3 +2445,5 @@ SceneRoots:
   - {fileID: 1670223709}
   - {fileID: 406703003}
   - {fileID: 760291902}
+  - {fileID: 784908408}
+  - {fileID: 247180637}

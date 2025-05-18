@@ -1,29 +1,35 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static event Action OnGameStart;
-    public static event Action OnGameOver;
-    public static event Action<int> OnScoreChanged;
+    [SerializeField] private DatabaseHandler databaseHandler;
+    [SerializeField] private PlayerFeesh playerFeesh;
     public static event Action OnGamePaused;
     public static event Action OnGameResumed;
-
-    private int score = 0;
     private bool isGameRunning = false;
     private bool isPaused = false;
-    [SerializeField] private GameData gameData;
+    [SerializeField] GameData gameData;
+    private float score = 0;
+    private int finalScore = 0;
 
-    private void Awake()
-    {
-       
-    }
 
     private void Start()
     {
         StartGame();
+        print("name" + databaseHandler.GetName());
+        databaseHandler.CreateNewPlayer(gameData.name);
     }
-
+    private void OnEnable()
+    {
+        PlayerFeesh.OnGameOver += EndGame;
+    }
+    private void OnDisable()
+    {
+        PlayerFeesh.OnGameOver -= EndGame;
+    }
     public void StartGame()
     {
         isGameRunning = true;
@@ -34,23 +40,14 @@ public class GameManager : MonoBehaviour
         OnGameStart?.Invoke();
     }
 
-    public void AddScore(int amount)
-    {
-        if (!isGameRunning || isPaused) return;
-
-        score += amount;
-        Debug.Log("Score: " + score);
-        OnScoreChanged?.Invoke(score);
-    }
 
     public void EndGame()
     {
         isGameRunning = false;
         Time.timeScale = 1f;
-        gameData.AddScore(score);
-
         Debug.Log("Game Over");
-        OnGameOver?.Invoke();
+        Debug.Log("Game Over. Score: " + playerFeesh.GetScore());
+        databaseHandler.SaveScore(playerFeesh.GetScore());
     }
 
     public void PauseGame()
@@ -78,8 +75,5 @@ public class GameManager : MonoBehaviour
         return isPaused;
     }
 
-    public int GetScore()
-    {
-        return score;
-    }
+    
 }
