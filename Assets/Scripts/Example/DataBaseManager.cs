@@ -6,7 +6,7 @@ using Firebase.Database;
 public class DataBaseManager : MonoBehaviour
 {
     [SerializeField] private string UserID;
-    [SerializeField] private StudentSO studentSO;
+    [SerializeField] private Players studentSO;
 
     private DatabaseReference reference;
 
@@ -23,7 +23,7 @@ public class DataBaseManager : MonoBehaviour
 
     public void UpdloadStudent()
     {
-        Student newStudent = studentSO.GetBasicStudentData();
+        Player newStudent = studentSO.GetBasicStudentData();
 
         string json = JsonUtility.ToJson(newStudent);
 
@@ -32,20 +32,17 @@ public class DataBaseManager : MonoBehaviour
 }
 
 [System.Serializable]
-public class Student
+public class Player
 {
-    public string name;
-    public string nickName;
-    public int age; 
-    public int id;
-    public string career;
 
-    public Student(string name, string nickName, int age, int id, string career)
+    public string nickName;
+    public int scoreHeight; 
+
+
+    public Player(string nickname, int score)
     {
-        this.name = name;
-        this.nickName = nickName;
-        this.age = age;
-        this.id = id;
-        this.career = career;
+ 
+        this.nickName = nickname;
+        this.scoreHeight = score;
     }
 }
