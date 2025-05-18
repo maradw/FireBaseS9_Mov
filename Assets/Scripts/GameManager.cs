@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private bool isGameRunning = false;
     private bool isPaused = false;
     [SerializeField] private GameData gameData;
-
+    
     private void Awake()
     {
        
@@ -48,8 +48,8 @@ public class GameManager : MonoBehaviour
         isGameRunning = false;
         Time.timeScale = 1f;
         gameData.AddScore(score);
+        int bestScore = PlayerPrefs.GetInt("BestScore", 0);
 
-        Debug.Log("Game Over");
         OnGameOver?.Invoke();
     }
 
