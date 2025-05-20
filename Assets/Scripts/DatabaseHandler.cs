@@ -22,7 +22,7 @@ public class DatabaseHandler : MonoBehaviour
     void Start()
     {
         reference = FirebaseDatabase.DefaultInstance.RootReference;
-
+      
     }
 
     public void LoadInfo()
