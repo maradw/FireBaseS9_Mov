@@ -11,27 +11,26 @@ namespace Assets.FirebaseScripts
     {
         [SerializeField] private string _characterPath = "character_sheet/one_cool_dude";
         [SerializeField] private TMP_Text nameText;
-        [SerializeField] private TMP_Text descriptionText;
+        //[SerializeField] private TMP_Text descriptionText;
         [SerializeField] private TMP_Text attackText;
-        [SerializeField] private TMP_Text defenseText;
+        //[SerializeField] private TMP_Text defenseText;
 
         [SerializeField] private Button submitButton;
 
-        //private ListenerRegistration _listenerRegistration;
+        private ListenerRegistration _listenerRegistration;
 
         private void Start()
         {
             var firestore = FirebaseFirestore.DefaultInstance;
 
-            /*_listenerRegistration = firestore.Document(_characterPath).Listen(snapshot => {
+            _listenerRegistration = firestore.Document(_characterPath).Listen(snapshot =>
+            {
 
                 CharacterData characterData = snapshot.ConvertTo<CharacterData>();
 
                 nameText.text = $"Name: {characterData.Name}";
-                descriptionText.text = $"Decription: {characterData.Description}";
-                attackText.text = $"Attack: {characterData.Attack.ToString()}";
-                defenseText.text = $"Defense: {characterData.Defense.ToString()}";
-            });*/
+                attackText.text = $"Attack: {characterData.Score.ToString()}";
+            });
         }
 
         private void OnEnable()
@@ -46,7 +45,7 @@ namespace Assets.FirebaseScripts
 
         private void OnDestroy()
         {
-            //_listenerRegistration.Stop();
+            _listenerRegistration.Stop();
         }
 
         public void ProcessData()
@@ -60,9 +59,7 @@ namespace Assets.FirebaseScripts
                 CharacterData characterData = task.Result.ConvertTo<CharacterData>();
 
                 nameText.text = $"Name: {characterData.Name}";
-                descriptionText.text = $"Decription: {characterData.Description}";
-                attackText.text = $"Attack: {characterData.Attack.ToString()}";
-                defenseText.text = $"Defense: {characterData.Defense.ToString()}";
+                attackText.text = $"Attack: {characterData.Score.ToString()}";
             });
         }
     }

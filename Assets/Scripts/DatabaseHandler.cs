@@ -13,7 +13,7 @@ public class DatabaseHandler : MonoBehaviour
     [SerializeField] private TMP_InputField inputField;
     private User getUser;
     private string playerKey = "";
-    //[SerializeField] GameData gameData;
+    [SerializeField] GameData gameData;
     private void Awake()
     {
         userID = SystemInfo.deviceUniqueIdentifier;
@@ -51,7 +51,7 @@ public class DatabaseHandler : MonoBehaviour
     public void SaveName()
     {
         string playerName = inputField.text;
-       // gameData.name = playerName;
+        gameData.name = playerName;
     }
     public void CreateNewPlayer()
     {
