@@ -105,5 +105,6 @@ public class Authentification : MonoBehaviour
     public void LogOut()
     {
         FirebaseAuth.DefaultInstance.SignOut();
+        OnLogOutSuccesful?.Invoke();
     }
 }
