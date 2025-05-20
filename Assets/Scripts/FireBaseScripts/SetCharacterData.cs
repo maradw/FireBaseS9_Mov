@@ -9,10 +9,9 @@ namespace Assets.FirebaseScripts
     {
         [SerializeField] private string _characterPath = "character_sheet/one_cool_dude";
         [SerializeField] private TMP_InputField nameField;
-        //[SerializeField] private TMP_InputField descriptionField;
-        [SerializeField] private PlayerFeesh Player;
-        // [SerializeField] private TMP_InputField attackField;
-        //[SerializeField] private TMP_InputField defenseField;
+        [SerializeField] private TMP_InputField descriptionField;
+        [SerializeField] private TMP_InputField attackField;
+        [SerializeField] private TMP_InputField defenseField;
 
         [SerializeField] private Button submitButton;
 
@@ -31,7 +30,9 @@ namespace Assets.FirebaseScripts
             CharacterData characterData = new CharacterData
             {
                 Name = nameField.text,
-                Score = Player.finalScore,
+                Description = descriptionField.text,
+                Attack = int.Parse(attackField.text),
+                Defense = int.Parse(defenseField.text)
             };
 
             var firestore = FirebaseFirestore.DefaultInstance;
@@ -46,7 +47,10 @@ namespace Assets.FirebaseScripts
         [FirestoreProperty]
         public string Name { get; set; }
         [FirestoreProperty]
-
-        public int Score { get; set; }
+        public string Description { get; set; }
+        [FirestoreProperty]
+        public int Attack { get; set; }
+        [FirestoreProperty]
+        public int Defense { get; set; }
     }
 }

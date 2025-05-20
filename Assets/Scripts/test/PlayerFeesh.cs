@@ -11,12 +11,13 @@ public class PlayerFeesh : MonoBehaviour
 
 
     private float currentScore = 0;
-    public int finalScore = 0;
+    private int finalScore = 0;
     void Start()
     {
         /* gameManager = GetComponent<GameManager>();
          firebaseManager = GetComponent<FirebaseManager>();*/
-  
+
+       
     }
 
     void Update()
@@ -52,4 +53,6 @@ public class PlayerFeesh : MonoBehaviour
             Debug.Log("¡Nuevo récord personal!");
         }*/
     }
+
+
 }

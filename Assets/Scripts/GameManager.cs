@@ -49,8 +49,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over");
         Debug.Log("Game Over. Score: " + playerFeesh.GetScore());
         databaseHandler.SaveScore(playerFeesh.GetScore());
-        //PlayerPrefs.GetInt(Name);
-        PlayerPrefs.Save();
     }
 
     public void PauseGame()
